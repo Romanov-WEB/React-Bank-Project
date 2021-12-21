@@ -7,7 +7,6 @@ import 'assets/style/Style.scss'
 
 export default function Login({ clickOut }) {
   console.log('render Login')
-
   const [loginUser, setLoginUser] = React.useState({ email: false, password: false })
   const [checked, setChecked] = React.useState(false)
 

@@ -7,7 +7,7 @@ import DataCard from 'store/getCard/DataCard'
 
 const Card = () => {
   console.log('Render Card')
-
+  
   const [currentIndex, setCurrentIndex] = React.useState(null)
 
   const toggleCard = (index) => {
@@ -16,6 +16,7 @@ const Card = () => {
       setCurrentIndex(null)
     }
   }
+
 
   const itemsCard = DataCard.data.map((item, index) => {
     return (
