@@ -3,6 +3,7 @@ import Card from '../card/component'
 import Header from '../../common/header/component/Header'
 import { Navigate } from 'react-router-dom'
 import Footer from '../../common/footer/component/Footer'
+import Payments from 'pages/payments/component/Payments'
 
 const Wrapper = ({ auth }) => {
   console.log('render Wrapper')
@@ -16,7 +17,8 @@ const Wrapper = ({ auth }) => {
           <Nav />
           <section className="main__info__section">
             <Header />
-            <Card />
+            {/* <Card /> */}
+            <Payments />
           </section>
         </main>
         <Footer />
