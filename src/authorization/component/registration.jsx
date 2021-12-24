@@ -3,6 +3,7 @@ import React from 'react'
 import '../../assets/style/Style.scss'
 import { validEmail, validPassword, validPhone } from 'shared/variables/Regex'
 import AuthReg from 'store/auth/ActionAuth'
+import DataCard from 'store/getCard/DataCard'
 
 export default function Registration({ clickOut }) {
   console.log('render Registration')
@@ -58,7 +59,8 @@ export default function Registration({ clickOut }) {
     event.preventDefault()
     await AuthReg.loginPOST('/register', user)
     if (AuthReg.tokenGet !== false) {
-      await localStorage.setItem('token', AuthReg.tokenGet)
+      localStorage.setItem('token', AuthReg.tokenGet)
+      await DataCard.getCard('/cards', AuthReg.tokenGet)
     }
   }
 

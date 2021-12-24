@@ -13,6 +13,7 @@ const OpenToken = async (tokenLocal) => {
   await AuthReg.getAuth('/auth', token)
   await DataUser.getUser('/profile', token)
   await DataCard.getCard('/cards', token)
+  
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
