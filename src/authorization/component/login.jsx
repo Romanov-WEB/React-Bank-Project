@@ -4,7 +4,6 @@ import AuthReg from 'store/auth/ActionAuth'
 import DataUser from 'store/user/dataUser'
 import { validEmail } from 'shared/variables/Regex'
 import 'assets/style/Style.scss'
-import DataCard from 'store/getCard/DataCard'
 
 export default function Login({ clickOut }) {
   console.log('render Login')
@@ -53,7 +52,6 @@ export default function Login({ clickOut }) {
       localStorage.setItem('token', AuthReg.tokenGet)
       await AuthReg.getAuth('/auth', AuthReg.tokenGet)
       await DataUser.getUser('/profile', AuthReg.tokenGet)
-      await DataCard.getCard('/cards', AuthReg.tokenGet)
     }
   }
 

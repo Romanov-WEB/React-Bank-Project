@@ -5,14 +5,12 @@ import { BrowserRouter } from 'react-router-dom'
 
 import AuthReg from './store/auth/ActionAuth'
 import DataUser from './store/user/dataUser'
-import DataCard from './store/getCard/DataCard'
 import tokenLocal from 'data/mock/token'
 
-const OpenToken = async (tokenLocal) => {
+const OpenToken = async () => {
   const { token } = tokenLocal
   await AuthReg.getAuth('/auth', token)
   await DataUser.getUser('/profile', token)
-  await DataCard.getCard('/cards', token)
   
   ReactDOM.render(
     <React.StrictMode>
@@ -23,4 +21,4 @@ const OpenToken = async (tokenLocal) => {
     document.getElementById('root')
   )
 }
-OpenToken(tokenLocal)
+OpenToken()

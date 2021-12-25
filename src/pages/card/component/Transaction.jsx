@@ -14,8 +14,8 @@ const Transaction = observer(() => {
     DataTransaction.resetTransaction()
   }, [])
 
-  const elem = DataTransaction.dataTransaction.map((item) => (
-    <TransactionLayout props={item} key={item.card} />
+  const elem = DataTransaction.dataTransaction.map((item, index) => (
+    <TransactionLayout props={item} key={index} />
   ))
   const current = elem.length
 

@@ -25,7 +25,7 @@ const Card = () => {
         index={index}
         openCard={currentIndex === index}
         prop={item}
-        key={item.iban}
+        key={index}
       />
     )
   })
@@ -33,7 +33,7 @@ const Card = () => {
   return (
     <div className="main__info__section__wrapp">
       <article className="cards__info__layout">
-        <div className="scroll">{itemsCard}</div>
+        <div className="scroll"> {itemsCard} </div>
         <Link to="/issue" className="create__card__button">
           Выпустить новую карту
         </Link>
