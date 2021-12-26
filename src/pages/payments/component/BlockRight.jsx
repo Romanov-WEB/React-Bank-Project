@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function BlockRight () {
+  console.log('Render BlockRight');
   return (
     <div className="payment__block--right">
       <div className="balance__block card__balance__block">
