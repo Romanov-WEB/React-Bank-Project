@@ -6,11 +6,11 @@ import OwnCard from './OwnCard';
 import TypePayment from './TypePayment';
 import UtilityBills from './UtilityBills';
 
-export default function FormPayment() {
+export default function FormPayment({ payments }) {
     console.log('Render FormPayment');
     return (
         <form className="form">
-          <CardSelection />
+          <CardSelection payments ={payments} />
           <TypePayment />
           <Contact />
           <UtilityBills />
