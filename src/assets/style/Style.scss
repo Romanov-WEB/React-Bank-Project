@@ -85,15 +85,15 @@ body {
 
 main {
   display: flex;
-  min-height: 100vh;
+  min-height: 95vh;
 
   section {
     width: 50%;
     min-height: 100%;
 
-    &:not(.decorative__section) {
-      overflow: auto;
-    }
+    // &:not(.decorative__section) {
+    //   overflow: auto;
+    // }
   }
 }
 
@@ -537,7 +537,7 @@ main {
 
   &--open &__list {
     opacity: 1;
-    overflow-y: auto;
+    // overflow-y: auto;
     height: unset;
     transition: opacity 0.3s ease-in-out;
   }
@@ -652,7 +652,7 @@ main {
 
 /////////////////////
 .dashbord {
-  min-height: 100vh;
+  min-height: 95vh;
 
   &__logo {
     margin-top: 16px;
