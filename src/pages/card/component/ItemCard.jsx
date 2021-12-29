@@ -1,20 +1,16 @@
-import React from 'react'
-
-import mastercardIcon from '../../../assets/icon/global/mastercard-icon.svg'
-import arrIcon from '../../../assets/icon/global/arr-bottom.svg'
-import cardBackground from '../../../assets/img/card-back.jpg'
-import visaWhite from '../../../assets/icon/global/visa-white.svg'
-import dotsIcon from '../../../assets/icon/global/dots-icon.svg'
-import DataTransaction from '../../../store/Transaction/dataTransaction'
+import { memo } from 'react'
+import mastercardIcon from 'assets/icon/global/mastercard-icon.svg'
+import visaIcon from 'assets/icon/global/visa-icon.svg'
+import arrIcon from 'assets/icon/global/arr-bottom.svg'
+import dotsIcon from 'assets/icon/global/dots-icon.svg'
+import DataTransaction from 'store/Transaction/dataTransaction'
 import tokenLocal from 'data/mock/token'
+import DataItem from 'common/items/DataItem'
+import DescrCardItem from 'common/items/DescrCardItem'
 
 const ItemCard = ({ toggleCard, index, openCard, prop }) => {
   console.log('Render ItemCard')
   const { token } = tokenLocal
-
-  const data = new Date(Date.parse(prop.valid))
-  const year = data.getFullYear().toString()
-  const month = data.getMonth()
   const card = prop.card.toString()
 
   const toggleTransaction = (cardNumber) => {
@@ -22,6 +18,14 @@ const ItemCard = ({ toggleCard, index, openCard, prop }) => {
       DataTransaction.APITransaction('orders', token, `${cardNumber}`)
     } else {
       DataTransaction.resetTransaction()
+    }
+  }
+
+  const cardIcon = () => {
+    if (prop.system === 'visa') {
+      return visaIcon
+    } else if (prop.system === 'mastercard') {
+      return mastercardIcon
     }
   }
 
@@ -34,41 +38,21 @@ const ItemCard = ({ toggleCard, index, openCard, prop }) => {
           toggleTransaction(prop.card)
         }}
       >
-        <img src={mastercardIcon} className="card__info__icon" alt="cardIcon" />
-        <p className="card__info__data">{`Личная карта ** ${card.slice(
-          card.length - 4,
-          card.length
-        )}`}</p>
+        <img src={cardIcon()} className="card__info__icon" alt="cardIcon" />
+        <p className="card__info__data">
+          {`${prop.description} ** ${card.slice(card.length - 4, card.length)}`}
+        </p>
         <p className="card__info__balance">${prop.balance}</p>
         <img src={arrIcon} className="arr__icon" alt="arrIcon" />
       </div>
-
       <div className="card__info__main">
-        <div className="card__info__card">
-          <img src={cardBackground} className="card__back" alt={cardBackground} />
-          <img src={visaWhite} className="card__type" alt="visaWhite" />
-          <p className="card__number">{prop.card}</p>
-          <p className="card__owner__name">{prop.issuer}</p>
-          <p className="card__exp__date">{`${month < 10 ? '0' + month : month} / 
-          ${year.slice(year.length - 2, year.length)}`}</p>
-        </div>
-
+        <DescrCardItem card={card} issuer={prop.issuer} valid={prop.valid} />
         <div className="card__info__settings">
-          <div className="data-item">
-            <p className="legend">Класс карты</p>
-            <p className="data">{prop.class}</p>
-          </div>
-
-          <div className="data-item">
-            <p className="legend">IBAN-номер</p>
-            <p className="data">{prop.iban}</p>
-          </div>
-
-          <div className="data-item">
-            <p className="legend">Кредитный лимит</p>
-            <p className="data">{prop.limit === 0 ? 'Отсутствует' : prop.limit}</p>
-          </div>
-
+          <DataItem text={'Класс карты'} props={prop.class} />
+          <DataItem text={'IBAN-номер'} props={prop.iban} />
+          <DataItem text={'Кредитный лимит'}
+            props={prop.limit === 0 ? 'Отсутствует' : prop.limit}
+          />
           <div className="data-item">
             <p className="legend">Покупки в интернете</p>
             <div
@@ -77,7 +61,6 @@ const ItemCard = ({ toggleCard, index, openCard, prop }) => {
               <div className="switcher " />
             </div>
           </div>
-
           <div className="data-item">
             <p className="legend">3D Security</p>
             <div
@@ -88,7 +71,6 @@ const ItemCard = ({ toggleCard, index, openCard, prop }) => {
               <div className="switcher " />
             </div>
           </div>
-
           <div className="other__settings">
             <img src={dotsIcon} className="settings__icon" alt="dotsIcon" />
             <p className="settings__name">Операции над картой</p>
@@ -98,8 +80,7 @@ const ItemCard = ({ toggleCard, index, openCard, prop }) => {
     </div>
   )
 }
-// export default ItemCard
 
-export default React.memo(ItemCard, (prevProp, nextProp) => {
+export default memo(ItemCard, (prevProp, nextProp) => {
   return prevProp.openCard === nextProp.openCard
 })

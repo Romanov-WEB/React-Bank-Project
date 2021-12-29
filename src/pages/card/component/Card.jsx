@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../assets/style/Style.scss'
+import 'assets/style/Style.scss'
 import { Link } from 'react-router-dom'
 import ItemCard from './ItemCard'
 import Transaction from './Transaction'
