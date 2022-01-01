@@ -16,7 +16,7 @@ class DataUser {
       })
       const { data } = await response.json()
       if (response.ok) {
-        await runInAction(() => {
+        runInAction(() => {
           this.userName = data.name
         })
       }

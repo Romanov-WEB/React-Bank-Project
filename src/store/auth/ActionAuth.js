@@ -35,7 +35,7 @@ class AuthReg {
           'x-token': token,
         },
       })
-      await runInAction(() => {
+      runInAction(() => {
         this.tokenValid = response.ok
       })
     } catch (e) {
