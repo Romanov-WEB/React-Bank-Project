@@ -16,7 +16,7 @@ class DataCard {
       })
       const { data } = await response.json()
       if (response.ok) {
-        await runInAction(() => {
+        runInAction(() => {
           this.data.push(...data)
         })
       }
